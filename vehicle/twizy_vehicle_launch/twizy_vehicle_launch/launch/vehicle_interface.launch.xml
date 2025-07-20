@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <arg name="vehicle_id" default="twizy" description="the vehicle under control, env200 or twizy"/>
-    <include file="$(find-pkg-share vehicle_interface)/launch/sd_vehicle_interface.launch.xml">
-        <arg name="sd_vehicle" value="$(arg vehicle_id)"/>
-        <arg name="sd_simulation_mode" value="false"/>
+    <arg name="vehicle_id" default="twizy" description="{env200, twizy}"/>
+    <arg name="sd_gps_imu" default="peak" description="{oxts, peak, none}"/>
+    <arg name="sd_speed_source" default="vehicle_can_speed" description="{vehicle_can_speed, imu_speed, ndt_speed}"/>
+    <arg name="sd_simulation_mode" default="false" description="{true, false}"/>
+
+    <include file="$(find-pkg-share sd_vehicle_interface)/launch/sd_vehicle_interface.launch.xml">
+        <arg name="sd_vehicle" value="$(var vehicle_id)"/>
+        <arg name="sd_gps_imu" value="$(var sd_gps_imu)"/>
+        <arg name="sd_speed_source" value="$(var sd_speed_source)"/>
+        <arg name="sd_simulation_mode" value="$(var sd_simulation_mode)"/>
     </include>
 </launch>

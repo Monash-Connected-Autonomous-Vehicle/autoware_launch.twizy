@@ -14,9 +14,8 @@ All rights reserved
   <!-- ***************** -->
   <xacro:include filename="$(find twizy_vehicle_description)/urdf/bases/sd_twizy_body.urdf.xacro" />
   <xacro:include filename="$(find twizy_vehicle_description)/urdf/wheels/sd_twizy_suspension.urdf.xacro" />
-  <xacro:include filename="$(find twizy_vehicle_description)/urdf/sensors/VLP-16.urdf.xacro"/>
-  <xacro:include filename="$(find twizy_vehicle_description)/urdf/sensors/cameras.urdf.xacro"/>
 
+  <!-- Skipping sensors and using autowares because position updates with sensor_kit calibration files -->
 
   <!-- *************** -->
   <!-- Robots Elements -->
@@ -28,42 +27,6 @@ All rights reserved
   <xacro:FL_wheel/>
   <xacro:FR_wheel/>
 
-  <!-- Sensors -->
-  <xacro:VLP-16  parent="chassis" name="velodyne" topic="/points_raw" hz="10" samples="1875">
-    <origin xyz="-0.681 0 1.445" rpy="0 -${1.5*M_PI/180.0} 0"/>
-  </xacro:VLP-16>
-
-  <xacro:blackfly_camera frlr_prefix="front" lrc_prefix="left">
-    <origin xyz="-0.04 0.12 1.3" rpy="0 0.087 0"/>
-  </xacro:blackfly_camera>
-
-  <xacro:blackfly_camera frlr_prefix="front" lrc_prefix="right">
-    <origin xyz="-0.04 -0.12 1.3" rpy="0 0.087 0"/>
-  </xacro:blackfly_camera>
-
-  <xacro:blackfly_camera frlr_prefix="front" lrc_prefix="center">
-    <origin xyz="-0.04 0 1.3" rpy="0 0.087 0"/>
-  </xacro:blackfly_camera>
-
-  <xacro:blackfly_camera frlr_prefix="rear" lrc_prefix="center">
-    <origin xyz="-1.26 0 1.28" rpy="0 0.2618 3.14"/>
-  </xacro:blackfly_camera>
-
-  <xacro:blackfly_camera frlr_prefix="right" lrc_prefix="forward">
-    <origin xyz="-0.95 -0.42 1.2" rpy="0 0.244 -1.12"/>
-  </xacro:blackfly_camera>
-
-  <xacro:blackfly_camera frlr_prefix="right" lrc_prefix="rearward">
-    <origin xyz="-1.05 -0.42 1.2" rpy="0 0.244 -2.18"/>
-  </xacro:blackfly_camera>
-
-  <xacro:blackfly_camera frlr_prefix="left" lrc_prefix="forward">
-    <origin xyz="-0.95 0.4 1.2" rpy="0 0.2967 1.12"/>
-  </xacro:blackfly_camera>
-
-  <xacro:blackfly_camera frlr_prefix="left" lrc_prefix="rearward">
-    <origin xyz="-1.05 0.39 1.2" rpy="0 0.2967 2.18"/>
-  </xacro:blackfly_camera>
 
   <gazebo>
     <plugin name="sd_control" filename="libSdControlPlugin.so">
