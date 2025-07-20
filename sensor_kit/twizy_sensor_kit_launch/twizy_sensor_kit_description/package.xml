@@ -11,6 +11,8 @@
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
   <depend>velodyne_description</depend>
+  <depend>camera_description</depend>
+  <depend>imu_description</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

@@ -3,7 +3,7 @@
   <arg name="vehicle_param_file" description="path to the file of vehicle info yaml"/>
   <arg name="vehicle_mirror_param_file" description="path to the file of vehicle mirror position yaml"/>
   <arg name="pointcloud_container_name" default="pointcloud_container"/>
-  <arg name="vehicle_id" default="$(env VEHICLE_ID default)"/>
+  <arg name="vehicle_id" default="twizy"/>
   <arg name="camera_feed_port" default="5000"/>
 
   <group>
