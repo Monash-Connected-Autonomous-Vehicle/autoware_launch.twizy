@@ -1,9 +1,9 @@
 <launch>
   <arg name="launch_driver" default="true" description="do launch driver"/>
-  <arg name="vehicle_param_file" description="path to the file of vehicle info yaml"/>
-  <arg name="vehicle_mirror_param_file" description="path to the file of vehicle mirror position yaml"/>
-  <arg name="pointcloud_container_name" default="pointcloud_container"/>
   <arg name="vehicle_id" default="twizy"/>
+  <arg name="vehicle_param_file" default="$(find-pkg-share $(var vehicle_id)_vehicle_description)/config/vehicle_info.param.yaml" description="path to the file of vehicle info yaml"/>
+  <arg name="vehicle_mirror_param_file" default="$(find-pkg-share $(var vehicle_id)_vehicle_description)/config/mirror.param.yaml" description="path to the file of vehicle mirror position yaml"/>
+  <arg name="pointcloud_container_name" default="pointcloud_container"/>
   <arg name="camera_feed_port" default="5000"/>
 
   <group>
@@ -16,9 +16,9 @@
     </include>
 
     <!-- Camera Driver -->
-    <include file="$(find-pkg-share twizy_sensor_kit_launch)/launch/camera.launch.py">
+    <!-- <include file="$(find-pkg-share twizy_sensor_kit_launch)/launch/camera.launch.py">
       <arg name="camera_feed_port" value="$(var camera_feed_port)" />
-    </include>
+    </include> -->
 
     <!-- Vehicle Velocity Converter  -->
     <!-- <include file="$(find-pkg-share vehicle_velocity_converter)/launch/vehicle_velocity_converter.launch.xml">
