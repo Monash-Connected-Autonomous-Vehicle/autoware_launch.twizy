@@ -41,9 +41,11 @@ def get_lidar_make(sensor_name):
 def get_vehicle_info(context):
     # TODO(TIER IV): Use Parameter Substitution after we drop Galactic support
     # https://github.com/ros2/launch_ros/blob/master/launch_ros/launch_ros/substitutions/parameter.py
-    gp = context.launch_configurations.get("ros_params", {})
-    if not gp:
-        gp = dict(context.launch_configurations.get("global_params", {}))
+    path = LaunchConfiguration("vehicle_param_file").perform(context)
+    gp = {}
+    with open(path, "r") as f:
+        gp = yaml.safe_load(f)["/**"]["ros__parameters"]
+    print(gp)
     p = {}
     p["vehicle_length"] = gp["front_overhang"] + gp["wheel_base"] + gp["rear_overhang"]
     p["vehicle_width"] = gp["wheel_tread"] + gp["left_overhang"] + gp["right_overhang"]
@@ -280,6 +282,7 @@ def generate_launch_description():
     add_launch_arg("use_intra_process", "False", "use ROS 2 component container communication")
     add_launch_arg("lidar_container_name", "nebula_node_container")
     add_launch_arg("output_as_sensor_frame", "True", "output final pointcloud in sensor frame")
+    add_launch_arg("vehicle_param_file", description="path to the file of vehicle parameters")
     add_launch_arg(
         "vehicle_mirror_param_file", description="path to the file of vehicle mirror position yaml"
     )
