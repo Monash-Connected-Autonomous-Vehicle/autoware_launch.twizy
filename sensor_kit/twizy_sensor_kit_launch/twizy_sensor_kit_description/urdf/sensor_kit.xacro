@@ -23,28 +23,28 @@
     <xacro:property name="calibration" value="${xacro.load_yaml('$(arg config_dir)/sensor_kit_calibration.yaml')}"/>
 
     <!-- lidar -->
-    <xacro:VLP-16 parent="sensor_kit_base_link" name="velodyne_sensor" topic="/velodyne_points" hz="10" samples="220" gpu="$(arg gpu)">
+    <xacro:VLP-16 parent="sensor_kit_base_link" name="velodyne" topic="/velodyne_points" hz="10" samples="220" gpu="$(arg gpu)">
       <origin
-        xyz="${calibration['sensor_kit_base_link']['velodyne']['x']}
-             ${calibration['sensor_kit_base_link']['velodyne']['y']}
-             ${calibration['sensor_kit_base_link']['velodyne']['z']}"
-        rpy="${calibration['sensor_kit_base_link']['velodyne']['roll']}
-             ${calibration['sensor_kit_base_link']['velodyne']['pitch']}
-             ${calibration['sensor_kit_base_link']['velodyne']['yaw']}"
+        xyz="${calibration['sensor_kit_base_link']['velodyne_base_link']['x']}
+             ${calibration['sensor_kit_base_link']['velodyne_base_link']['y']}
+             ${calibration['sensor_kit_base_link']['velodyne_base_link']['z']}"
+        rpy="${calibration['sensor_kit_base_link']['velodyne_base_link']['roll']}
+             ${calibration['sensor_kit_base_link']['velodyne_base_link']['pitch']}
+             ${calibration['sensor_kit_base_link']['velodyne_base_link']['yaw']}"
       />
     </xacro:VLP-16>
    
     <!-- camera, Logitech C920-->
     <xacro:monocular_camera_macro
-      name="default_cam_sensor"
+      name="default_cam"
       parent="sensor_kit_base_link"
       namespace=""
-      x="${calibration['sensor_kit_base_link']['default_cam']['x']}"
-      y="${calibration['sensor_kit_base_link']['default_cam']['y']}"
-      z="${calibration['sensor_kit_base_link']['default_cam']['z']}"
-      roll="${calibration['sensor_kit_base_link']['default_cam']['roll']}"
-      pitch="${calibration['sensor_kit_base_link']['default_cam']['pitch']}"
-      yaw="${calibration['sensor_kit_base_link']['default_cam']['yaw']}"
+      x="${calibration['sensor_kit_base_link']['default_cam_base_link']['x']}"
+      y="${calibration['sensor_kit_base_link']['default_cam_base_link']['y']}"
+      z="${calibration['sensor_kit_base_link']['default_cam_base_link']['z']}"
+      roll="${calibration['sensor_kit_base_link']['default_cam_base_link']['roll']}"
+      pitch="${calibration['sensor_kit_base_link']['default_cam_base_link']['pitch']}"
+      yaw="${calibration['sensor_kit_base_link']['default_cam_base_link']['yaw']}"
       fps="30"
       width="1280" 
       height="720"
