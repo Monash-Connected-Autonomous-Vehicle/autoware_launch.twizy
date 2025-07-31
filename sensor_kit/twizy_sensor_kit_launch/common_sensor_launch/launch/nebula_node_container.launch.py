@@ -138,6 +138,8 @@ def launch_setup(context, *args, **kwargs):
                         "packet_mtu_size",
                         "setup_sensor",
                         "udp_only",
+                        "advanced_diagnostics",
+                        "diag_span",
                     ),
                 },
             ],
@@ -305,6 +307,8 @@ def generate_launch_description():
         description="path to parameter file of ring outlier filter node",
     )
     add_launch_arg("udp_only", "False", "use UDP only")
+    add_launch_arg("advanced_diagnostics", "false", "advanced_diagnostics")
+    add_launch_arg("diag_span", "1000", "diag_span")
 
     set_container_executable = SetLaunchConfiguration(
         "container_executable",
